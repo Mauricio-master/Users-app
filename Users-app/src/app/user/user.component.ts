@@ -10,7 +10,11 @@ import { User } from './user';
 })
 export class UserComponent implements OnInit {
 
-  users: User[];
+  users: User[] = [
+     new User(1, 'jose', 'alcatara', 'jose@gmail.com'),
+    new User(2, 'jose', 'alcatara', 'jose@gmail.com'),
+     new User(3, 'jose', 'alcatara', 'jose@gmail.com')
+  ];
 
   constructor( private userService: UserService) { }
 
@@ -20,11 +24,11 @@ export class UserComponent implements OnInit {
 
   getUsers() {
     this.userService.getUsers()
-      .then(users =>users = users)
+      .then(users => users = users)
       .catch(err => console.log(err));
   }
 
-  create(user: User){
+  create(user: User) {
     this.userService.create(user)
       .then(status => this.getUsers())
       .catch(err => console.log(err));
