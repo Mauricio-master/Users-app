@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Output } from '@angular/core';
 
 import {User} from '../user';
 
@@ -8,11 +10,15 @@ import {User} from '../user';
   styleUrls: ['./user-new.component.css']
 })
 export class UserNewComponent implements OnInit {
+  @Output() createNewUserEvent = new  EventEmitter();
   newUser = new User;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+   create() {
+     this.createNewUserEvent.emit(this.newUser);
+     this.newUser = new User();
+   }
 }
